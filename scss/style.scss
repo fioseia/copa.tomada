@@ -1,0 +1,1063 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+// Propiedades //
+
+$colores: 
+#f1f1f1, 
+#010101,  
+#F2E4DC,
+#D99C9C,
+#A480F2,
+#BB94F2, 
+#F2CB05;
+
+$fuentes: (
+	textoComun: "Crimson Text", 
+	titulos: "Raleway",
+);
+
+@mixin textos($size, $weight) {
+	font-family: map-get($fuentes, textoComun);
+	letter-spacing: 0.05rem;
+	font-size: $size;
+	font-weight: $weight;
+}
+
+@mixin titulos($size, $weight) {
+	font-family: map-get($fuentes, titulos);
+	letter-spacing: 0.05rem;
+	font-size: $size;
+	font-weight: $weight;
+}
+
+%botonTransp {
+	background-color: transparent;
+	border: 1px solid #f1f1f1;
+	color: #f1f1f1;
+	padding: 0.7rem 2rem;
+	font-size: 1.25rem;
+	display: block;
+
+	&:hover {
+		background-color: #f1f1f1;
+		color: #000;
+		border: 1px solid #010101;
+	}
+}
+
+%parallaxImages {
+	position: relative;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+%header__paginas{
+	opacity: 1;
+	max-height: 50vh;
+	max-width: 100vw;
+	@extend %parallaxImages;
+}
+
+// Estilo //
+/*Index*/
+body{
+	background-color: nth($colores,3);
+	overflow-x: hidden;
+	display: grid;
+	grid-template-columns: 100vw;
+	grid-template-rows: auto;
+	grid-template-areas: 
+	"nav"
+	"banner"
+	"main"
+	"footer"; 
+}
+
+.header__index{
+	background-image: url(../img/background3.jpg);
+	opacity: 0.9;
+	max-width: 100vw;
+	min-height: 100vh;
+	@extend %parallaxImages;
+	border: 2px solid #010101;
+}
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	padding: 30px;
+	font-family: 'Raleway';
+	font-weight: 800;
+	letter-spacing: 0.4em;
+	width: 100vw;
+	position: absolute;
+	grid-area: nav;
+	
+	.logo{
+		height: 40px;
+		margin-left: 20px;
+}
+	.navbar-nav{
+		list-style: none;
+		display: flex;
+		justify-content: space-around;
+		align-items: baseline;
+		width: 100%;
+		
+
+		.nav-item{
+			display: inline;
+			
+			.nav-link{
+				text-decoration: none;
+				color: nth($colores,7);
+				text-transform: uppercase;
+
+				&:hover{
+					color: nth($colores,7);
+				}
+			}
+		}
+	}
+
+	.header__search {
+		display: flex;
+		justify-content: end;
+		align-items: baseline;
+	
+		.search__text {
+			background-color: transparent;
+			border: none;
+			outline: none;
+			border-radius: 40px;
+			float: left;
+			padding: 0 5px;
+			color:nth($colores,2);
+			font-size: 0.8rem;
+			transition: 0.4s;
+			width: 0;
+			height: 30%;
+			text-align: center;
+		}
+	
+		.search__button {
+			color: nth($colores, 1);
+			margin-left: 5px;
+		}
+	
+		&:hover > .search__text {
+			width: 200px;
+			padding: 0 6px;
+			background-color: rgba(161, 161, 161, 0.5);
+		}
+	}
+}
+
+.redes{
+	writing-mode: vertical-lr;
+	height: 80vh;
+	transform: rotate(180deg);
+	position: fixed;
+	margin-left: 30px;
+	z-index: 100;
+	top: 80px;
+	
+	ul{
+		list-style:none;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		
+		li{
+			display: inline-block;
+			
+			a{
+				text-decoration: none;
+				color: nth($colores,7);
+				@include titulos(0.8rem,600);
+				text-transform: uppercase;
+
+				&:hover{
+					color: nth($colores,7);
+				}
+			}
+		}
+	}
+}
+
+.banner{
+	position: absolute;
+	top: 120px;
+	width: auto;
+	height: 80vh;
+	grid-area: banner;
+
+	.banner__text{
+		width: 80vw;
+		position: relative;
+		left: 100px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
+
+		h1{
+			@include titulos(7rem,800);
+			line-height: 5rem;
+			color: nth($colores,5);
+			text-transform: uppercase;
+		}
+
+		h2{
+			@include titulos(2.5rem,600);
+			color: nth($colores,4);
+		}
+
+		p{
+			@include titulos(1rem,600);
+			color:nth($colores, 3);
+		}
+
+		.banner__boton{
+			@extend %botonTransp;
+			text-decoration: none;
+			width: 150px;
+			margin: auto;
+		}
+	}
+	.suscripcion{
+		writing-mode: vertical-lr;
+		height: 80vh;
+		position: fixed;
+		right: 20px;
+		text-align: center;
+		z-index: 20;
+		top: 100px;
+
+		a{
+			text-decoration: none;
+			color: nth($colores,7);
+			@include titulos(0.8rem,600);
+			text-transform: uppercase;
+		}
+	}
+}
+
+main{
+	grid-area: main;
+	height: auto;
+}
+.main1{
+	background-color: nth($colores,4);
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	height: auto;
+	text-align: none;
+	border: 2px solid #010101;
+
+	.main1__img{
+		background-color:nth($colores,3);
+		height: auto;
+		border-left: 2px solid #010101;
+		border-right: 2px solid #010101;
+	}
+
+	.main1__text{
+		width: 35vw;
+		padding: 30px 0;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		margin: 30px;
+
+		h3{
+			@include titulos(2rem,600);
+			color: nth($colores, 5);
+			margin-top: 50px;
+			text-transform: uppercase;
+		}
+
+		p{
+			@include textos(1rem,400);
+		}
+
+		.main1__boton{
+			@extend %botonTransp;
+			text-decoration: none;
+			width: 150px;
+			margin: 30px auto;
+		}
+	}
+}
+
+.main2{
+	background-image: url(../img/variedades.jpg);
+	opacity: 1;
+	height: 400px;
+	max-width: 100vw;
+	@extend %parallaxImages;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border:2px solid #010101;
+	
+	h2{
+		@include titulos(2rem,600);
+		color: nth($colores, 7);
+		text-transform: uppercase;
+	}
+
+	p{
+		@include textos(1.5rem,600);
+		color: nth($colores, 6);
+	}
+
+	a{
+	@extend %botonTransp;
+	text-decoration: none;
+	width: 150px;
+	margin: 0 auto;
+	font-size: 1rem;
+	}
+}
+
+.main3{
+	background-color: nth($colores, 5);
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border: 2px solid #010101;
+
+	h2{
+		@include titulos(2rem,600);
+		color: nth($colores,3);
+		text-transform: uppercase;
+	}
+
+
+	#email{
+		background-color: nth($colores, 3);
+		border-radius: 8px;
+		border: 2px solid #010101;
+	}
+
+	#boton{
+		@extend %botonTransp;
+		text-decoration: none;
+		width: 150px;
+		padding: 5px;
+		font-size: 0.8rem;
+		border: none;
+		margin-left: 10px;
+		font-family: 'Raleway';
+	}
+}
+
+.main4{
+	background-image: url(../img/cata.jpg);
+	opacity: 0.7;
+	height: 400px;
+	max-width: 100vw;
+	@extend %parallaxImages;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border: 2px solid #010101;
+
+	h2{
+		@include titulos(2rem,600);
+		color: nth($colores, 7);
+		text-transform: uppercase;
+	}
+
+	p{
+		@include textos(1.5rem,600);
+		color: nth($colores, 3);
+		width: 80%
+	}
+
+	a{
+	@extend %botonTransp;
+	text-decoration: none;
+	width: 180px;
+	margin: 0 auto;
+	font-size: 1rem;
+	}
+}
+
+footer{
+	grid-area: footer;
+	background-color: nth($colores, 2);
+	text-align: center;
+	color: nth($colores,3);
+	padding: 10px;
+	margin-bottom: 0;
+
+	h3{
+		@include textos(.5rem,200);
+		text-transform: uppercase;
+	}
+}
+
+//Resenas//
+
+.header__resenas{
+	@extend %header__paginas;
+	background-image: url(../img/resenas.jpg);
+	background-size: cover;
+	border: 2px solid #010101;
+}
+
+.banner__resenas{
+	position: absolute;
+	top: 150px;
+	width: 100%;
+	height: 50vh;
+	grid-area: banner;
+	margin: 0 auto;
+
+	.banner__text{
+		width: 80vw;
+		position: relative;
+		left: 100px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
+
+		h1{
+			@include titulos(7rem,800);
+			line-height: 5rem;
+			color: nth($colores,5);
+			text-transform: uppercase;
+		}
+
+		p{
+			@include titulos(1rem,600);
+			line-height: 2rem;
+			color: nth($colores,7);
+			padding: 10px;
+		}
+	}
+
+	.suscripcion{
+		writing-mode: vertical-lr;
+		height: 80vh;
+		position: fixed;
+		right: 20px;
+		text-align: center;
+		z-index: 20;
+		top: 100px;
+
+		a{
+			text-decoration: none;
+			color: nth($colores,7);
+			@include titulos(0.8rem,600);
+			text-transform: uppercase;
+		}
+	}
+}
+
+.main__resenas{
+	height: 77vh;
+}
+.seccion__imagen {
+	justify-content: center;
+	align-items: center;
+	background-color: nth($colores, 3);
+	height: auto;
+	border: 2px solid #010101;
+
+	img {
+		height: 25rem;
+	}
+}
+
+.seccion__texto {
+	overflow-x: hidden;
+	height: 95vh;
+	scroll-behavior: smooth;
+	@include textos(1rem, 200);
+	background-color: nth($colores,6);
+	border: 2px solid #010101;
+	
+	p{
+		padding: 10px;
+		width: 80%;
+	}
+
+	#valoraciones__card {
+		margin-top: 10px;
+		padding: 20px;
+		width: 80%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-content: center;
+		border-top: 2px solid #f1f1f1;
+		margin-right: 20px;
+
+		.usuarios{
+			margin-left: 10px;
+		}
+	}
+	
+	form {
+		margin-top: 30px;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		#inputValoracion{
+			width: 90%;
+			max-height: 100px;
+			font-family: inherit;
+			font-size: 1.2em;
+			background-color: grey;
+			opacity: 0.4;
+			border: 1px solid grey;
+			border-radius: 5px;
+		}
+
+		#boton{
+			display: inline-block;
+			@extend %botonTransp;
+			padding: 2px 5px;
+			margin: 10px 5px;
+		}
+	}
+
+	img {
+		max-width: 100px;
+		border-radius: 50%;
+		margin: 10px;
+	}
+}
+
+//Variedades//
+.header__variedades	{
+	@extend %header__paginas;
+	background-image: url(../img/variedades2.jpg);
+	background-size: cover;
+	min-height: 80vh;
+	border: 2px solid #010101;
+}
+
+.banner__variedades{
+	position: absolute;
+	top: 150px;
+	width: 100%;
+	height: 50vh;
+	grid-area: banner;
+	margin: 0 auto;
+
+	.banner__text{
+		width: 80vw;
+		position: relative;
+		left: 100px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
+
+		h1{
+			@include titulos(7rem,800);
+			line-height: 5rem;
+			color: nth($colores,5);
+			text-transform: uppercase;
+		}
+
+		p{
+			@include titulos(1rem,600);
+			line-height: 2rem;
+			color: nth($colores,7);
+			width: 100%;
+			
+		}		
+	}
+	.suscripcion{
+		writing-mode: vertical-lr;
+		height: 80vh;
+		position: fixed;
+		right: 20px;
+		text-align: center;
+		z-index: 20;
+		top: 100px;
+
+		a{
+			text-decoration: none;
+			color: nth($colores,7);
+			@include titulos(0.8rem,600);
+			text-transform: uppercase;
+		}
+	}
+}
+
+#variedades{
+	h3{
+		@include titulos(1rem,400);
+		color: nth($colores,5);
+		text-transform: uppercase;
+		margin-top: 20px;
+		display: none;
+	}
+}
+.main__variedades {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-content: space-between;
+	flex-wrap: wrap;
+	height: 80vh;
+	overflow-y: scroll;
+	background-image: url(../img/portada3.jpg);
+	background-position: center;
+	background-size: cover;
+	opacity: 0.9;
+
+}
+
+#variedad {
+	height: 20rem;
+	width: 15rem;
+	background-color: transparent;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 1rem 5rem;
+	position: relative;
+	overflow: hidden;
+	border: 2px solid #010101;
+	border-radius: 8px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+}
+
+.imagenVariedad {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
+
+	img {
+		transform: scale(1);
+		transition: all 500ms ease-out;
+	}
+}
+
+.textoVariedad {
+	position: absolute;
+	text-align: left;
+	text-decoration: none;
+	font-size: 1rem;
+	line-height: 1em;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	background: nth($colores, 3);
+	transition: all 500ms ease-out;
+	visibility: hidden;
+	padding: 10px;
+
+	td{
+		padding: 5px 0;
+	}
+}
+
+#variedad:hover > .textoVariedad {
+	opacity: 0.8;
+	visibility: visible;
+}
+
+#variedad:hover > .textoVariedad h2 {
+	margin-top: 30px;
+	margin-bottom: 15px;
+	color: #8c274c;
+	transition: all 500ms ease-out;
+}
+
+#variedad:hover > .imagenVariedad img {
+	transform: scale(0.8);
+}
+
+//Cata//
+#headerCata{
+	background-image: url(../img/cata2.jpg);
+}
+.carousel-inner{
+	padding: 50px 0;
+	display: flex;
+	align-items: center;
+}
+
+.carousel-item {
+	img {
+		max-height: 80vh;
+		margin: auto;
+	}
+}
+
+.carousel-item {
+	background-color: nth($colores,2);
+	img{
+		opacity: 1;
+	}
+}
+.carousel-caption{
+
+	h5 {
+		@include titulos(3rem, 400);
+		color: nth($colores,4);
+	}
+	p, li {
+		@include textos(1.2rem, 600);
+		color: nth($colores,5);
+	}
+}
+		
+
+//Contacto//
+#header__contacto{
+	background-image: url(../img/contacto.jpg);
+	background-size: cover;
+}
+.contacto{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 0;
+	border: 2px solid #010101;
+	
+	div{
+		width: 40%;
+		border: 2px solid #010101;
+
+	}
+}
+
+.contacto__image{
+	text-align: center;
+	height: 495.6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url(../img/form.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.contacto__form{
+	background-color: nth($colores, 2);
+	color: nth($colores, 3);
+	text-align: center;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+
+	h2 {
+		@include titulos(1.2rem, 400);
+	}
+
+	form {
+		@include textos(1rem, 400);
+		margin: 5px auto;
+		height: auto;
+		max-width: 300px;
+		padding: 31px 0;
+		
+		fieldset {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-content: space-between;
+			height: auto;
+			padding: center;
+			border-style: none;
+
+			input {
+				width: 80%;
+				margin: 5px auto;
+				color: #f1f1f1;
+				margin-top: 5px;
+				border: 2px solid #f1f1f1;
+				background-color: transparent;
+			}
+
+			.botonGenero{
+			width: 200px;
+			}
+			textarea {
+				margin: 20px 0;
+			}
+
+			#email{
+				background-color: transparent;
+				border: 1px solid #f1f1f1;
+			}
+			
+			#boton {
+				@extend %botonTransp;
+				font-size: 0.8rem;
+				padding: 2px;
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+
+
+//Media//
+@media (min-width: 992px){
+	.header__index{
+		min-height: 100vh;
+	}
+	.header__resenas{
+		min-height: 80vh;
+	}
+	.main__resenas .seccion__texto{
+		overflow-y: scroll;
+	}
+
+	
+}
+
+
+@media (min-width: 0px) and (max-width: 991.98px){
+	main{
+		overflow-x: hidden;
+		overflow-y: visible;
+		height: auto;
+	}
+
+	nav { 
+	background-color: nth($colores,2);
+	opacity: 1;
+
+	.container-fluid {
+		width: 100vw;
+		padding: 0;
+		height: 40px;
+
+		span{
+			color: #fff;
+		}
+	}
+	.navbar-collapse{
+		background-color: nth($colores,2);
+		opacity: 1;
+		padding: 15px;
+		z-index: 100;
+		width: 90vw;
+		}
+	}
+
+	.redes, .suscripcion{
+		display: none;
+		transform: translateX(-100px);
+	}
+
+	.header__index{
+		min-height: 100vh;
+	}
+
+	.banner, .banner__resenas{
+		width: 100%;
+		padding: 20px;
+		min-height: auto;
+
+		.banner__text{
+			width: 90vw;
+			left: unset;
+			
+			h1{
+				font-size: 4rem;
+				line-height: 4rem;
+			}
+
+			h2{
+				font-size: 1.5rem;
+			}
+
+			p{
+				font-size: 1rem;
+			}
+		}
+	}
+
+	.main1{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		.main1__img{
+			width: 100vw;
+			height: 300px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			img{
+				height: 300px;
+				padding: 20px 0;				
+			}
+		}
+
+		.main1__text{
+			width: 90vw;
+		}
+	}
+
+	.header__resenas{
+		min-height: 70vh;
+		max-height: 70vh;
+		background-image: url(../img/resenasMovil.jpg);
+		background-size: cover;
+		background-position-y: top;
+
+		.banner__text {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		}
+	}
+
+	.main__resenas{
+		text-align: center;
+		height: auto;
+
+		.seccion__texto{
+			overflow-y: visible;
+			height: auto;
+
+			p{
+				margin: auto;
+				text-align: justify;
+			}
+
+			#valoraciones__card{
+				width: 100vw;
+				
+				p{
+					text-align: left;
+					line-height: 0.8rem;
+					padding: 0;
+				}
+			}
+		}
+	}
+
+	.header__variedades{
+		max-height: 70vh;
+		min-height: 70vh;
+	}
+	.banner__variedades{
+		width: 100vw;
+		overflow-x: hidden;
+		max-height: 50vh;
+
+		.banner__text {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			width: 100%;
+			left: 0;
+
+			h1{
+				font-size: 3rem;
+			}
+
+			p{
+				padding: 10px;
+			}
+			}
+	}
+	.main__variedades{
+		height: auto;
+	}
+
+	#variedades{
+		h3{
+			display: block;
+			text-align: center;
+		}
+	}
+	#resenas{
+		h3{
+			display: block;
+			position: absolute;
+		}
+	}
+		
+	.variedades{
+		height: auto;
+		overflow-y: visible;
+	}
+
+	.imagenVariedad{
+		opacity: 0.7;
+	}
+
+	.textoVariedad{
+		visibility: visible;
+		opacity: 0;
+	}
+
+	.carousel-item {
+		height: auto;
+	img {
+		width: 50%;
+		margin: 200px auto;
+	}
+	.carousel-caption{
+		height: 500px;
+		p, li{
+			font-size: 0.95rem;
+		}
+	}
+}
+
+
+
+
+	.contacto{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 10px;
+
+		div{
+			width: 90%;
+		}
+	}
+
+}
