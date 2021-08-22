@@ -778,6 +778,7 @@ footer h3 {
 .contacto__form form fieldset #email {
   background-color: transparent;
   border: 1px solid #f1f1f1;
+  color: #f1f1f1;
 }
 .contacto__form form fieldset #boton {
   font-size: 0.8rem;
